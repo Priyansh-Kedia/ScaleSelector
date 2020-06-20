@@ -88,6 +88,7 @@ Simple XML use for circular selector
 Get the current selected value by using
 	
 	testRecycler.getSelectedValue()
+	demoId.getSelectedValue()
 	
 	
 To get the selected values as soon as the user taps,  the activity/ fragment should implement
