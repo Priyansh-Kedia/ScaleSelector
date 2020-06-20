@@ -6,7 +6,7 @@ A simple library to make a selection RecyclerView using just a few lines of XML 
 
 Gradle Dependency
 
-        implementation 'com.github.Priyansh-Kedia:ScaleSelector:0.1.3'
+         implementation 'com.github.Priyansh-Kedia:ScaleSelector:0.1.4'
 
 Add     
      
