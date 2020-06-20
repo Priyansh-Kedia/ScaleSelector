@@ -51,7 +51,7 @@ Allowed Attributes
         <attr name="defaultPointerColor" format="color" />
         <attr name="backgroundColor" format="color" />
         <attr name="showArrowPointer" format="boolean" />
-	<attr name="arrowPointerTint" format="color" />
+        <attr name="arrowPointerTint" format="color" />
 	
 	
 	
