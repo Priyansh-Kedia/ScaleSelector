@@ -39,7 +39,6 @@ Background color, text color and pointer line colors are also customisable
 
 
 
-
 Allowed Attributes
 
         <attr name="stepValue" format="integer" />
@@ -55,7 +54,7 @@ Allowed Attributes
 	
 	
 	
-Simple XML use
+Simple XML use for normal selector
 
 
 	<com.kedia.scaleselector.ScaleSelector
@@ -72,6 +71,27 @@ Simple XML use
         app:defaultTextColor="#fff" />
 	
 	
+Simple XML use for circular selector
+
+	<com.kedia.scaleselector.CircularScaleSelector
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/demoId"
+        app:circleMinValue="100"
+        app:circleSelectedTextColor="#000000"
+        app:selectedCircleColor="@color/blue"
+        app:circleDefaultTextColor="@color/blue"
+        app:circleBackgroundColor="@color/colorPrimaryDark"
+        app:circleMaxValue="200"/>
+
+	
 Get the current selected value by using
 	
 	testRecycler.getSelectedValue()
+	
+	
+To get the selected values as soon as the user taps,  the activity/ fragment should implement
+	
+	CircularScaleSelector.onClick or ScaleSelector.onClick or both
+
+	
