@@ -70,3 +70,8 @@ Simple XML use
         app:stepValue="10"
         app:selectedTextColor="#fff"
         app:defaultTextColor="#fff" />
+	
+	
+Get the current selected value by using
+	
+	testRecycler.getSelectedValue()
