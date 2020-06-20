@@ -6,7 +6,7 @@ A simple library to make a selection RecyclerView using just a few lines of XML 
 
 Gradle Dependency
 
-        implementation 'com.github.Priyansh-Kedia:ScaleSelector:0.1.2'
+        implementation 'com.github.Priyansh-Kedia:ScaleSelector:0.1.3'
 
 Add     
      
@@ -51,6 +51,8 @@ Allowed Attributes
         <attr name="defaultPointerColor" format="color" />
         <attr name="backgroundColor" format="color" />
         <attr name="showArrowPointer" format="boolean" />
+        <attr name="arrowPointerTint" format="color" />
+	
 	
 	
 Simple XML use
@@ -62,8 +64,14 @@ Simple XML use
         android:id="@+id/testRecycler"
         app:showArrowPointer="true"
         app:minValue="100"
+        app:arrowPointerTint="#000000"
         app:maxValue="200"
         app:defaultPointerColor="#6F86D6"
         app:stepValue="10"
         app:selectedTextColor="#fff"
         app:defaultTextColor="#fff" />
+	
+	
+Get the current selected value by using
+	
+	testRecycler.getSelectedValue()
