@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ScaleSelector">
+        <attr name="stepValue" format="integer" />
+        <attr name="orientation" format="enum">
+            <enum name="horizontal" value="1"/>
+            <enum name="vertical" value="2" />
+        </attr>
+        <attr name="pointerPosition" format="enum">
+            <enum name="start" value="-1" />
+            <enum name="centre" value="0" />
+            <enum name="end" value="1" />
+        </attr>
+        <attr name="pointerColor" format="integer" />
+
+    </declare-styleable>
+</resources>

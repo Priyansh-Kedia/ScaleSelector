@@ -1,0 +1,3 @@
+include ':app:scaleselector'
+include ':app'
+rootProject.name = "ScaleSelector"
