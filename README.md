@@ -39,7 +39,7 @@ Background color, text color and pointer line colors are also customisable
 
 
 
-Allowed Attributes
+Allowed Attributes for normal scale selector
 
         <attr name="stepValue" format="integer" />
         <attr name="defaultTextColor" format="color" />
@@ -52,6 +52,15 @@ Allowed Attributes
         <attr name="showArrowPointer" format="boolean" />
         <attr name="arrowPointerTint" format="color" />
 	
+	
+Allowed Attributes for Circular Scale Selector
+
+	<attr name="circleDefaultTextColor" format="color" />
+        <attr name="circleSelectedTextColor" format="color" />
+        <attr name="circleMinValue" format="integer" />
+        <attr name="circleMaxValue" format="integer" />
+        <attr name="circleBackgroundColor" format="color" />
+        <attr name="selectedCircleColor" format="color" />
 	
 	
 Simple XML use for normal selector
