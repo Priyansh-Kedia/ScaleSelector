@@ -10,6 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/testRecycler"
+        app:showArrowPointer="true"
         app:minValue="100"
         app:maxValue="200"
         app:defaultPointerColor="#6F86D6"

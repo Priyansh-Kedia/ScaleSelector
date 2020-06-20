@@ -17,5 +17,16 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/biometrics_selector_card" />
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:id="@+id/arrow"
+        android:visibility="gone"
+        android:layout_height="wrap_content"
+        android:src="@drawable/up_arrow_login"
+        android:layout_marginTop="15dp"
+        app:layout_constraintTop_toBottomOf="@id/recycler"
+        app:layout_constraintStart_toStartOf="@id/recycler"
+        app:layout_constraintEnd_toEndOf="@id/recycler" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

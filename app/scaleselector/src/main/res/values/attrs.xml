@@ -9,5 +9,6 @@
         <attr name="maxValue" format="integer" />
         <attr name="defaultPointerColor" format="color" />
         <attr name="backgroundColor" format="color" />
+        <attr name="showArrowPointer" format="boolean" />
     </declare-styleable>
 </resources>

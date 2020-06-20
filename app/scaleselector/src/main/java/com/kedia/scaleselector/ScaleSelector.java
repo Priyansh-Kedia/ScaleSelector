@@ -28,6 +28,7 @@ public class ScaleSelector extends FrameLayout implements RecyclerAdapter.OnClic
     private int backGroundColor;
     private int defaultPointerColor;
     private int maxValue;
+    private Boolean showArrowPointer;
 
     private RecyclerView mRecycler;
     private RecyclerAdapter adapter;
@@ -58,6 +59,7 @@ public class ScaleSelector extends FrameLayout implements RecyclerAdapter.OnClic
             defaultPointerColor = typedArray.getColor(R.styleable.ScaleSelector_defaultPointerColor, Color.parseColor("#ffffff"));
             defaultTextColor = typedArray.getColor(R.styleable.ScaleSelector_defaultTextColor, Color.parseColor("#ffffff"));
             selectedTextColor = typedArray.getColor(R.styleable.ScaleSelector_selectedTextColor, Color.parseColor("#ffffff"));
+            showArrowPointer = typedArray.getBoolean(R.styleable.ScaleSelector_showArrowPointer, false);
         } finally {
             typedArray.recycle();
         }
@@ -70,6 +72,14 @@ public class ScaleSelector extends FrameLayout implements RecyclerAdapter.OnClic
         View view = LayoutInflater.from(getContext()).inflate(mainLayoutId, this);
 
         View recyclerView = view.findViewById(R.id.recycler);
+        View arrow = view.findViewById(R.id.arrow);
+
+        if (showArrowPointer) {
+            arrow.setVisibility(View.VISIBLE);
+        } else {
+            arrow.setVisibility(View.GONE);
+        }
+
         if (recyclerView instanceof RecyclerView) {
             mRecycler = (RecyclerView) recyclerView;
         } else {
