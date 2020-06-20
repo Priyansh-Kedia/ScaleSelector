@@ -54,6 +54,7 @@ Allowed Attributes
 	<attr name="arrowPointerTint" format="color" />
 	
 	
+	
 Simple XML use
 
 
