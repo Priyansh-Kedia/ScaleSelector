@@ -1,3 +1,4 @@
 # ScaleSelector
 
 
+![Screenshot](ScreenShot.jpeg)
