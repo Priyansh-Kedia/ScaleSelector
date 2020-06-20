@@ -1,14 +1,13 @@
 package com.kedia.scaleselector;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -34,13 +33,14 @@ public class CircularScaleSelector extends FrameLayout implements CircularRecycl
     private int maxValue;
     private int arrowPointerTint;
     private Boolean showArrowPointer;
+    private onClick listener;
 
     private RecyclerView mRecycler;
     private CircularRecyclerAdapter adapter;
 
     private LinearLayoutManager linearLayoutManager ;
 
-    public int selectedValue;
+    private int selectedValue = 0;
 
     public CircularScaleSelector(@NonNull Context context) {
         super(context);
@@ -52,12 +52,17 @@ public class CircularScaleSelector extends FrameLayout implements CircularRecycl
         initLayout(attrs);
     }
 
+
+    public void setListener(onClick listener) {
+        this.listener = listener;
+    }
+
     private void init(AttributeSet attributeSet) {
         TypedArray typedArray = getContext().obtainStyledAttributes(attributeSet, R.styleable.CircularScaleSelector);
         try {
             mainLayoutId = R.layout.circular_recycler_view_layout;
             selectedCircleColor = typedArray.getInt(R.styleable.CircularScaleSelector_selectedCircleColor, 5);
-            backGroundColor = typedArray.getColor(R.styleable.CircularScaleSelector_cricleBackgroundColor, Color.parseColor("#000000"));
+            backGroundColor = typedArray.getColor(R.styleable.CircularScaleSelector_circleBackgroundColor, Color.parseColor("#000000"));
             minValue = typedArray.getInt(R.styleable.CircularScaleSelector_circleMinValue, 0);
             maxValue = typedArray.getInt(R.styleable.CircularScaleSelector_circleMaxValue, 200);
             defaultTextColor = typedArray.getColor(R.styleable.CircularScaleSelector_circleDefaultTextColor, Color.parseColor("#ffffff"));
@@ -138,5 +143,11 @@ public class CircularScaleSelector extends FrameLayout implements CircularRecycl
         int center = mRecycler.getWidth() / 2 - mRecycler.findViewHolderForAdapterPosition(adapterPosition).itemView.getWidth() / 2;
         linearLayoutManager.scrollToPositionWithOffset(adapterPosition, center);
         selectedValue = Integer.parseInt(ageNumber);
+        if (listener != null)
+            listener.onClick(selectedValue);
+    }
+
+    interface onClick {
+        void onClick(int selectedValue);
     }
 }

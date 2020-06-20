@@ -30,6 +30,9 @@ public class ScaleSelector extends FrameLayout implements RecyclerAdapter.OnClic
     private int defaultPointerColor;
     private int maxValue;
     private int arrowPointerTint;
+
+    private ScaleSelector.onClick listener;
+
     private Boolean showArrowPointer;
 
     private RecyclerView mRecycler;
@@ -37,7 +40,7 @@ public class ScaleSelector extends FrameLayout implements RecyclerAdapter.OnClic
 
     private LinearLayoutManager linearLayoutManager ;
 
-    public int selectedValue;
+    private int selectedValue;
 
     public ScaleSelector(Context context) {
         super(context);
@@ -47,6 +50,10 @@ public class ScaleSelector extends FrameLayout implements RecyclerAdapter.OnClic
         super(context, attributeSet);
         init(attributeSet);
         initLayout(attributeSet);
+    }
+
+    public void setListener(ScaleSelector.onClick listener) {
+        this.listener = listener;
     }
 
     private void init(AttributeSet attributeSet) {
@@ -151,6 +158,12 @@ public class ScaleSelector extends FrameLayout implements RecyclerAdapter.OnClic
         int center = mRecycler.getWidth() / 2 - mRecycler.findViewHolderForAdapterPosition(adapterPosition).itemView.getWidth() / 2;
         linearLayoutManager.scrollToPositionWithOffset(adapterPosition, center);
         selectedValue = Integer.parseInt(height);
+        if (listener != null)
+            listener.onScaleClicked(selectedValue);
+    }
+
+    interface onClick {
+        void onScaleClicked(int selectedValue);
     }
 
 }

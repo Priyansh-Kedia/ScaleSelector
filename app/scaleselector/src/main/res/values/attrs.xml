@@ -18,9 +18,9 @@
         <attr name="circleSelectedTextColor" format="color" />
         <attr name="circleMinValue" format="integer" />
         <attr name="circleMaxValue" format="integer" />
-        <attr name="cricleBackgroundColor" format="color" />
-            <attr name="selectedCircleColor" format="color" />
-<!--        <attr name="showArrowPointer" format="boolean" />-->
-<!--        <attr name="arrowPointerTint" format="color" />-->
+        <attr name="circleBackgroundColor" format="color" />
+        <attr name="selectedCircleColor" format="color" />
+        <!--        <attr name="showArrowPointer" format="boolean" />-->
+        <!--        <attr name="arrowPointerTint" format="color" />-->
     </declare-styleable>
 </resources>
