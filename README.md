@@ -3,6 +3,15 @@
 A simple library to make a selection RecyclerView using just a few lines of XML code.
 
 
+
+Gradle Dependency
+
+        implementation 'com.github.Priyansh-Kedia:ScaleSelector:0.1.2'
+
+Add     maven { url 'https://jitpack.io' } in the root build.gradle at the end of repositories
+
+
+
 ![](https://s7.gifyu.com/images/WhatsApp-Video-2020-06-20-at-5.11.12-PM.gif)
 
 
