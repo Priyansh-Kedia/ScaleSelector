@@ -8,7 +8,11 @@ Gradle Dependency
 
         implementation 'com.github.Priyansh-Kedia:ScaleSelector:0.1.2'
 
-Add     maven { url 'https://jitpack.io' } in the root build.gradle at the end of repositories
+Add     
+     
+     maven { url 'https://jitpack.io' } 
+       
+in the root build.gradle at the end of repositories
 
 
 
