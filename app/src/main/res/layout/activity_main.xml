@@ -7,10 +7,15 @@
     tools:context=".MainActivity">
 
     <com.kedia.scaleselector.ScaleSelector
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/testRecycler"
-        app:orientation="vertical"
+        app:minValue="100"
+        app:maxValue="200"
+        app:defaultPointerColor="#6F86D6"
+        app:stepValue="10"
+        app:selectedTextColor="#fff"
+        app:defaultTextColor="#fff"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"

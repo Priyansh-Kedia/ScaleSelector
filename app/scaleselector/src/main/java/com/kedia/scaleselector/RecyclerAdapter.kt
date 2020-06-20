@@ -10,7 +10,14 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 
 class RecyclerAdapter(private val list: MutableList<Int>, private val listener: OnClick, private val context: Context) :  RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+    private var pointerColor: Int = Color.WHITE
     private var selectedPosition = -1
+    private var stepValue: Int = 5
+    private var backgroundCardColor = Color.BLACK
+    private var defaultPointerColor = Color.WHITE
+    private var defaultTextColor = Color.WHITE
+    private var selectedTextColor = Color.WHITE
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.biometrics_selector_card, parent, false))
@@ -23,7 +30,7 @@ class RecyclerAdapter(private val list: MutableList<Int>, private val listener: 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is ViewHolder) {
             holder.bind(list[position])
-            if (holder.itemView.isSelected)
+            if (holder.itemView.elevation == 2f)
                 selectedPosition = position
         }
     }
@@ -31,6 +38,30 @@ class RecyclerAdapter(private val list: MutableList<Int>, private val listener: 
     fun setData(list: List<Int>) {
         this.list.addAll(list)
         notifyDataSetChanged()
+    }
+
+    fun setPointerColor(color: Int) {
+        this.pointerColor = color
+    }
+
+    fun setStepValue(stepValue: Int) {
+        this.stepValue = stepValue
+    }
+
+    fun setBackGroundCardColor(color: Int) {
+        this.backgroundCardColor = color
+    }
+
+    fun setDefaultPointerColor(color: Int) {
+        this.defaultPointerColor = color
+    }
+
+    fun setDefaultTextColor(color: Int) {
+        this.defaultTextColor = color
+    }
+
+    fun setSelectedTextColor(color: Int) {
+        this.selectedTextColor = color
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -41,7 +72,9 @@ class RecyclerAdapter(private val list: MutableList<Int>, private val listener: 
 
         fun bind(int: Int) {
 
-            if (int % 5 == 0) {
+            selectorLayout.setBackgroundColor(backgroundCardColor)
+
+            if (int % stepValue == 0) {
                 heightText.text = int.toString()
                 heightText.visibility = View.VISIBLE
             } else {
@@ -54,31 +87,33 @@ class RecyclerAdapter(private val list: MutableList<Int>, private val listener: 
                     scaleY = 1.2f
                 }
                 heightLine.scaleY = 2.5f
-                itemView.isSelected = true
+                itemView.elevation = 2f
             } else {
                 heightText.apply {
                     scaleY = 1f
+                    setTextColor(defaultTextColor)
                 }
-                itemView.isSelected = false
+                itemView.elevation = 1f
                 heightLine.scaleY = 1f
-                heightLine.setBackgroundColor(Color.parseColor("#ffffff"))
-                if (Integer.valueOf(heightText.text.toString().trim()) % 5 != 0)
+                heightLine.setBackgroundColor(defaultPointerColor)
+                if (Integer.valueOf(heightText.text.toString().trim()) % stepValue != 0)
                     heightText.visibility = View.INVISIBLE
             }
 
             itemView.setOnClickListener {
-                it.isSelected = true
+                it.elevation = 2f
                 heightText.scaleY = 1.2f
+                heightText.setTextColor(selectedTextColor)
                 heightLine.apply {
                     scaleY = 2.5f
-                    setBackgroundColor(Color.parseColor("#ffffff"))
+                    setBackgroundColor(pointerColor)
                 }
                 heightText.visibility = View.VISIBLE
                 if (selectedPosition != -1)
                     notifyItemChanged(selectedPosition)
                 notifyItemChanged(selectedPosition)
                 selectedPosition = adapterPosition
-                listener.onHeightClicked(heightText.toString().trim(), adapterPosition)
+                listener.onHeightClicked(heightText.text.toString().trim(), adapterPosition)
             }
         }
 
