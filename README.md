@@ -10,7 +10,12 @@ Gradle Dependency
 
 Add     
      
-     maven { url 'https://jitpack.io' } 
+    allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
        
 in the root build.gradle at the end of repositories
 
