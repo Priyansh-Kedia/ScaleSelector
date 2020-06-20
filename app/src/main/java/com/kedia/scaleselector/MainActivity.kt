@@ -14,7 +14,6 @@ class MainActivity : AppCompatActivity(), CircularScaleSelector.onClick, ScaleSe
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        Log.d("TAG!!!",demoId.selectedValue.toString() + "asdfasd " + testRecycler.selectedValue.toString())
         demoId.setListener(this)
         testRecycler.setListener(this)
     }
