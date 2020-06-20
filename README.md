@@ -64,7 +64,7 @@ Simple XML use
         android:id="@+id/testRecycler"
         app:showArrowPointer="true"
         app:minValue="100"
-	app:arrowPointerTint="#000000"
+        app:arrowPointerTint="#000000"
         app:maxValue="200"
         app:defaultPointerColor="#6F86D6"
         app:stepValue="10"
