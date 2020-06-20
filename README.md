@@ -51,3 +51,19 @@ Allowed Attributes
         <attr name="defaultPointerColor" format="color" />
         <attr name="backgroundColor" format="color" />
         <attr name="showArrowPointer" format="boolean" />
+	
+	
+Simple XML use
+
+
+	<com.kedia.scaleselector.ScaleSelector
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/testRecycler"
+        app:showArrowPointer="true"
+        app:minValue="100"
+        app:maxValue="200"
+        app:defaultPointerColor="#6F86D6"
+        app:stepValue="10"
+        app:selectedTextColor="#fff"
+        app:defaultTextColor="#fff" />
