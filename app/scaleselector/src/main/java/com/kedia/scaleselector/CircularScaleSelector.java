@@ -9,6 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SimpleItemAnimator;
@@ -18,9 +21,9 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ScaleSelector extends FrameLayout implements RecyclerAdapter.OnClick{
+public class CircularScaleSelector extends FrameLayout implements CircularRecyclerAdapter.OnClick {
 
-    private int stepValue;
+    private int selectedCircleColor;
     private int defaultTextColor;
     private int selectedTextColor;
     private int pointerColor;
@@ -33,36 +36,32 @@ public class ScaleSelector extends FrameLayout implements RecyclerAdapter.OnClic
     private Boolean showArrowPointer;
 
     private RecyclerView mRecycler;
-    private RecyclerAdapter adapter;
+    private CircularRecyclerAdapter adapter;
 
     private LinearLayoutManager linearLayoutManager ;
 
     public int selectedValue;
 
-    public ScaleSelector(Context context) {
+    public CircularScaleSelector(@NonNull Context context) {
         super(context);
     }
 
-    public ScaleSelector(Context context, AttributeSet attributeSet) {
-        super(context, attributeSet);
-        init(attributeSet);
-        initLayout(attributeSet);
+    public CircularScaleSelector(@NonNull Context context, @Nullable AttributeSet attrs) {
+        super(context, attrs);
+        init(attrs);
+        initLayout(attrs);
     }
 
     private void init(AttributeSet attributeSet) {
-        TypedArray typedArray = getContext().obtainStyledAttributes(attributeSet, R.styleable.ScaleSelector);
+        TypedArray typedArray = getContext().obtainStyledAttributes(attributeSet, R.styleable.CircularScaleSelector);
         try {
-            mainLayoutId = R.layout.main_recycler_view_layout;
-            stepValue = typedArray.getInt(R.styleable.ScaleSelector_stepValue, 5);
-            backGroundColor = typedArray.getColor(R.styleable.ScaleSelector_backgroundColor, Color.parseColor("#000000"));
-            pointerColor = typedArray.getColor(R.styleable.ScaleSelector_selectedPointerColor,getContext().getResources().getColor(R.color.blue));
-            minValue = typedArray.getInt(R.styleable.ScaleSelector_minValue, 0);
-            maxValue = typedArray.getInt(R.styleable.ScaleSelector_maxValue, 200);
-            defaultPointerColor = typedArray.getColor(R.styleable.ScaleSelector_defaultPointerColor, Color.parseColor("#ffffff"));
-            defaultTextColor = typedArray.getColor(R.styleable.ScaleSelector_defaultTextColor, Color.parseColor("#ffffff"));
-            selectedTextColor = typedArray.getColor(R.styleable.ScaleSelector_selectedTextColor, Color.parseColor("#ffffff"));
-            showArrowPointer = typedArray.getBoolean(R.styleable.ScaleSelector_showArrowPointer, false);
-            arrowPointerTint = typedArray.getColor(R.styleable.ScaleSelector_arrowPointerTint, getContext().getResources().getColor(R.color.blue));
+            mainLayoutId = R.layout.circular_recycler_view_layout;
+            selectedCircleColor = typedArray.getInt(R.styleable.CircularScaleSelector_selectedCircleColor, 5);
+            backGroundColor = typedArray.getColor(R.styleable.CircularScaleSelector_cricleBackgroundColor, Color.parseColor("#000000"));
+            minValue = typedArray.getInt(R.styleable.CircularScaleSelector_circleMinValue, 0);
+            maxValue = typedArray.getInt(R.styleable.CircularScaleSelector_circleMaxValue, 200);
+            defaultTextColor = typedArray.getColor(R.styleable.CircularScaleSelector_circleDefaultTextColor, Color.parseColor("#ffffff"));
+            selectedTextColor = typedArray.getColor(R.styleable.CircularScaleSelector_circleSelectedTextColor, Color.parseColor("#ffffff"));
         } finally {
             typedArray.recycle();
         }
@@ -74,15 +73,8 @@ public class ScaleSelector extends FrameLayout implements RecyclerAdapter.OnClic
 
         View view = LayoutInflater.from(getContext()).inflate(mainLayoutId, this);
 
-        View recyclerView = view.findViewById(R.id.recycler);
-        ImageView arrow = view.findViewById(R.id.arrow);
+        View recyclerView = view.findViewById(R.id.ageRecyclerView);
 
-        if (showArrowPointer) {
-            arrow.setVisibility(View.VISIBLE);
-            arrow.setImageTintList(ColorStateList.valueOf(arrowPointerTint));
-        } else {
-            arrow.setVisibility(View.GONE);
-        }
 
         if (recyclerView instanceof RecyclerView) {
             mRecycler = (RecyclerView) recyclerView;
@@ -90,7 +82,7 @@ public class ScaleSelector extends FrameLayout implements RecyclerAdapter.OnClic
             throw new IllegalArgumentException("Only works with recyclerView");
         }
 
-       List<Integer> list = new ArrayList();
+        List<Integer> list = new ArrayList();
 
         if (!(minValue < maxValue)) {
             throw new IllegalArgumentException("Minimum value cannot be greater than maximum value");
@@ -101,11 +93,9 @@ public class ScaleSelector extends FrameLayout implements RecyclerAdapter.OnClic
 
 
 
-        adapter =  new RecyclerAdapter(list,this,getContext());
-        adapter.setPointerColor(pointerColor);
-        adapter.setStepValue(stepValue);
+        adapter =  new CircularRecyclerAdapter(list,this,getContext());
+        adapter.setSelectedCardColor(selectedCircleColor);
         adapter.setBackGroundCardColor(backGroundColor);
-        adapter.setDefaultPointerColor(defaultPointerColor);
         adapter.setDefaultTextColor(defaultTextColor);
         adapter.setSelectedTextColor(selectedTextColor);
         mRecycler.setAdapter(adapter);
@@ -118,7 +108,6 @@ public class ScaleSelector extends FrameLayout implements RecyclerAdapter.OnClic
 
         mRecycler.setLayoutManager(linearLayoutManager);
     }
-
 
     public void setLayoutManager(RecyclerView.LayoutManager manager) {
         if (manager instanceof LinearLayoutManager) {
@@ -145,12 +134,9 @@ public class ScaleSelector extends FrameLayout implements RecyclerAdapter.OnClic
     }
 
     @Override
-    public void onHeightClicked(@NotNull String height, int adapterPosition) {
-//        val center = heightRecycler.width /2 - heightRecycler.findViewHolderForAdapterPosition(adapterPosition)?.itemView?.width!! / 2
-//        heightLayoutManager.scrollToPositionWithOffset(adapterPosition, center)
+    public void onItemClick(int adapterPosition, @NotNull String ageNumber) {
         int center = mRecycler.getWidth() / 2 - mRecycler.findViewHolderForAdapterPosition(adapterPosition).itemView.getWidth() / 2;
         linearLayoutManager.scrollToPositionWithOffset(adapterPosition, center);
-        selectedValue = Integer.parseInt(height);
+        selectedValue = Integer.parseInt(ageNumber);
     }
-
 }

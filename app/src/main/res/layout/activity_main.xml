@@ -6,18 +6,32 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <com.kedia.scaleselector.ScaleSelector
+<!--    <com.kedia.scaleselector.ScaleSelector-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:id="@+id/testRecycler"-->
+<!--        app:showArrowPointer="true"-->
+<!--        app:minValue="100"-->
+<!--        app:arrowPointerTint="#000000"-->
+<!--        app:maxValue="200"-->
+<!--        app:defaultPointerColor="#6F86D6"-->
+<!--        app:stepValue="10"-->
+<!--        app:selectedTextColor="#fff"-->
+<!--        app:defaultTextColor="#fff"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent" />-->
+
+    <com.kedia.scaleselector.CircularScaleSelector
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/testRecycler"
-        app:showArrowPointer="true"
-        app:minValue="100"
-        app:arrowPointerTint="#000000"
-        app:maxValue="200"
-        app:defaultPointerColor="#6F86D6"
-        app:stepValue="10"
-        app:selectedTextColor="#fff"
-        app:defaultTextColor="#fff"
+        android:id="@+id/demoId"
+        app:circleMinValue="100"
+        app:circleSelectedTextColor="#000000"
+        app:selectedCircleColor="@color/blue"
+        app:cricleBackgroundColor="#fff"
+        app:circleMaxValue="200"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
