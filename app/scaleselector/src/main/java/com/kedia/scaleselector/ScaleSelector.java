@@ -1,13 +1,14 @@
 package com.kedia.scaleselector;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
-
+import android.widget.ImageView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SimpleItemAnimator;
@@ -28,6 +29,7 @@ public class ScaleSelector extends FrameLayout implements RecyclerAdapter.OnClic
     private int backGroundColor;
     private int defaultPointerColor;
     private int maxValue;
+    private int arrowPointerTint;
     private Boolean showArrowPointer;
 
     private RecyclerView mRecycler;
@@ -60,6 +62,7 @@ public class ScaleSelector extends FrameLayout implements RecyclerAdapter.OnClic
             defaultTextColor = typedArray.getColor(R.styleable.ScaleSelector_defaultTextColor, Color.parseColor("#ffffff"));
             selectedTextColor = typedArray.getColor(R.styleable.ScaleSelector_selectedTextColor, Color.parseColor("#ffffff"));
             showArrowPointer = typedArray.getBoolean(R.styleable.ScaleSelector_showArrowPointer, false);
+            arrowPointerTint = typedArray.getColor(R.styleable.ScaleSelector_arrowPointerTint, getContext().getResources().getColor(R.color.blue));
         } finally {
             typedArray.recycle();
         }
@@ -72,10 +75,11 @@ public class ScaleSelector extends FrameLayout implements RecyclerAdapter.OnClic
         View view = LayoutInflater.from(getContext()).inflate(mainLayoutId, this);
 
         View recyclerView = view.findViewById(R.id.recycler);
-        View arrow = view.findViewById(R.id.arrow);
+        ImageView arrow = view.findViewById(R.id.arrow);
 
         if (showArrowPointer) {
             arrow.setVisibility(View.VISIBLE);
+            arrow.setImageTintList(ColorStateList.valueOf(arrowPointerTint));
         } else {
             arrow.setVisibility(View.GONE);
         }
