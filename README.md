@@ -107,4 +107,6 @@ To get the selected values as soon as the user taps,  the activity/ fragment sho
 	
 ### Found this library useful? :heart:
 
+Support it by joining [stargazers](https://github.com/Priyansh-Kedia/ScaleSelector/stargazers) for this repository. :star2:
+
 	
