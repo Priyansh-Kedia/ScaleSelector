@@ -103,5 +103,8 @@ Get the current selected value by using
 To get the selected values as soon as the user taps,  the activity/ fragment should implement
 	
 	CircularScaleSelector.onClick or ScaleSelector.onClick or both
+	
+	
+# Found this library useful? :heart:
 
 	
