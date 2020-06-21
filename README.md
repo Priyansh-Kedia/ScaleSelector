@@ -105,6 +105,6 @@ To get the selected values as soon as the user taps,  the activity/ fragment sho
 	CircularScaleSelector.onClick or ScaleSelector.onClick or both
 	
 	
-# Found this library useful? :heart:
+### Found this library useful? :heart:
 
 	
